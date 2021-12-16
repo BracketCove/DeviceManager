@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav" app:startDestination="@id/reminderListFragment">
+
+    <fragment android:id="@+id/reminderDetailFragment"
+              android:name="com.bracketcove.devicemanager."
+              android:label="ReminderDetailFragment"
+              tools:layout="@layout/fragment_reminder_detail"
+    >
+        <action android:id="@+id/action_reminderDetailFragment_to_reminderListFragment"
+                app:destination="@id/reminderListFragment"
+                app:popUpTo="@+id/reminderListFragment"
+                app:popUpToInclusive="true"
+        />
+
+        <argument android:name="reminderId" app:argType="string" android:defaultValue='""'/>
+
+    </fragment>
+    <fragment android:id="@+id/reminderListFragment"
+              android:name="com.bracketcove.postrainer.reminderlist.ReminderListFragment"
+              android:label="ReminderListFragment"
+              tools:layout="@layout/fragment_reminder_list"
+    >
+        <action android:id="@+id/action_reminderListFragment_to_reminderDetailFragment"
+                app:destination="@id/reminderDetailFragment" app:enterAnim="@anim/scale_up"
+                app:exitAnim="@anim/scale_down"/>
+        <action android:id="@+id/action_reminderListFragment_to_movementListFragment"
+                app:destination="@id/movementListFragment" app:enterAnim="@anim/fade_in_shadow"
+                app:exitAnim="@anim/fade_out"/>
+        <action android:id="@+id/action_reminderListFragment_to_settingsFragment"
+                app:destination="@id/settingsFragment" app:enterAnim="@anim/fade_in_shadow"
+                app:exitAnim="@anim/fade_out"/>
+    </fragment>
+</navigation>
