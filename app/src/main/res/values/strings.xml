@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">DeviceManager</string>
+    <string name="status">Status:</string>
+    <string name="available">Available</string>
+    <string name="offline">Offline</string>
+    <string name="test_description">
+        Lorem Isum sit whatever dolamet Я не знаеть где моя яблоко Lorem Isum sit whatever dolamet Я не знаеть где моя яблоко.
+        Lorem Isum sit whatever dolamet Я не знаеть где моя яблокоL orem Isum sit whatever dolamet Я не знаеть где моя яблоко.
+    </string>
+    <string name="devices">Devices</string>
+    <string name="Buzzer">Search for...</string>
+
 </resources>

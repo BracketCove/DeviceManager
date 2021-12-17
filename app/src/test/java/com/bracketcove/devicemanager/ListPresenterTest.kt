@@ -1,4 +1,4 @@
 package com.bracketcove.devicemanager
 
-class ListPresenter {
+class ListPresenterTest {
 }
