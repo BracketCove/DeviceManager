@@ -2,9 +2,10 @@ package com.bracketcove.devicemanager.home
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.bracketcove.devicemanager.detail.IDetailContract
 import com.bracketcove.devicemanager.domain.Device
 
-class DeviceListViewModel(private val state: SavedStateHandle) : ViewModel() {
+class DeviceListViewModel(private val state: SavedStateHandle) : ViewModel(), IDeviceListContract.ViewModel {
     private lateinit var devices: List<Device>
 
     private var prompt: String = ""
@@ -14,23 +15,23 @@ class DeviceListViewModel(private val state: SavedStateHandle) : ViewModel() {
     internal var subShowLoading: ((Boolean) -> Unit)? = null
     internal var subShowPrompt: ((String) -> Unit)? = null
 
-    internal fun setDeviceData(
+    override fun setDeviceData(
         devices: List<Device>
     ) {
         this.devices = devices
     }
 
-    internal fun showDeviceData(favourites: Boolean) {
+    override fun showDeviceData(favourites: Boolean) {
         if (favourites) subDeviceList?.invoke(devices.filter { it.isFavourite })
         else  subDeviceList?.invoke(devices)
     }
 
-    internal fun showPrompt(prompt: String) {
+    override fun showPrompt(prompt: String) {
         this.prompt = prompt
         subShowPrompt?.invoke(prompt)
     }
 
-    internal fun showLoading(showLoading: Boolean) {
+    override fun showLoading(showLoading: Boolean) {
         this.showLoading = showLoading
         subShowLoading?.invoke(this.showLoading)
     }

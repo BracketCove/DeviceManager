@@ -10,10 +10,7 @@ import com.bracketcove.devicemanager.toStringValue
  * orientation changes and process death. I find it useful to keep the presentation logic out of
  * them as much as possible, and place that logic in a class easy to test with JUnit.
  */
-class DetailViewModel(private val state: SavedStateHandle) : ViewModel(){
-
-
-
+class DetailViewModel(private val state: SavedStateHandle) : ViewModel(), IDetailContract.ViewModel{
     private lateinit var device: Device
 
     //Rx or LiveData is an option here to but I prefer not to use a library if I have a standard
@@ -25,8 +22,10 @@ class DetailViewModel(private val state: SavedStateHandle) : ViewModel(){
     internal var subDescription: ((String) -> Unit)? = null
     internal var subImageUrl:((String) -> Unit)? = null
 
-    internal fun showLoading(boolean: Boolean) = subShowLoading?.invoke(boolean)
-    internal fun setDeviceData(device: Device) {
+    override fun showLoading(boolean: Boolean){
+        subShowLoading?.invoke(boolean)
+    }
+    override fun setDeviceData(device: Device) {
         this.device = device
 
         subName?.invoke(this.device.name)
