@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide
  * TODO: Replace the implementation with code for your data type.
  */
 class DeviceAdapter(
-    private val values: List<Device>,
     private val eventHandler: ((DeviceListEvent) -> Unit)?
 ) : ListAdapter<Device, DeviceAdapter.DeviceViewHolder>(
 DeviceDiffUtil()
@@ -40,7 +39,7 @@ DeviceDiffUtil()
     }
 
     override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
-        values[position].let { item ->
+        getItem(position).let { item ->
             holder.viewGroup.setOnClickListener {
                 eventHandler?.invoke(
                     DeviceListEvent.OnDeviceSelected(position)
@@ -72,8 +71,6 @@ DeviceDiffUtil()
             holder.deviceStatus.text = item.status.toStringValue()
         }
     }
-
-    override fun getItemCount(): Int = values.size
 
     inner class DeviceViewHolder(binding: ListItemDeviceBinding) :
         RecyclerView.ViewHolder(binding.root) {

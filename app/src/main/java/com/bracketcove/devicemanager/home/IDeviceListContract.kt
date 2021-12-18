@@ -9,13 +9,16 @@ interface IDeviceListContract {
 
     interface View {
         fun navigateToDetailFragment(device: Device)
+        fun showMessage(message: String)
     }
 
     interface ViewModel {
         fun setDeviceData(devices: List<Device>)
-        fun showDeviceData(favourites: Boolean)
+        fun showDeviceData(devices: List<Device>)
         fun showPrompt(prompt: String)
         fun showLoading(showLoading: Boolean)
+        fun getDevice(index: Int) : Device
+        fun getDevices() : List<Device>
     }
 }
 

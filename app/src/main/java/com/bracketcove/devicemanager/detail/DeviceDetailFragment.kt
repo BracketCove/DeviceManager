@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bracketcove.devicemanager.R
 import com.bracketcove.devicemanager.databinding.FragmentDetailBinding
+import com.bracketcove.devicemanager.di.buildDetailPresenter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 
 class DeviceDetailFragment : Fragment(), IDetailContract.View {
     private var _binding: FragmentDetailBinding? = null
@@ -28,7 +33,11 @@ class DeviceDetailFragment : Fragment(), IDetailContract.View {
     override fun onStart() {
         super.onStart()
 
-        //TODO() don't forget to instantiate the presenter
+        presenter = buildDetailPresenter(
+            requireContext(),
+            this,
+            vm
+        )
 
         presenter.onEvent(
             DetailViewEvent.OnStart(
@@ -50,18 +59,35 @@ class DeviceDetailFragment : Fragment(), IDetailContract.View {
         vm.subType = { binding.textDeviceType.text = it }
         vm.subDescription = { binding.textDescription.text = it }
         vm.subImageUrl = {
+
             Glide.with(this)
                 .load(it)
-                .centerCrop()
+                .transition(withCrossFade())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+
+                .placeholder(R.drawable.ic_laptop)
                 .into(binding.imageDevice)
+
         }
 
-        binding.imbDetailBack.setOnClickListener { presenter.onEvent(DetailViewEvent.OnBackPressed) }
+        vm.subIconIsFavourite = {
+            binding.imbFavouriteIcon.setImageResource(
+                if (it) R.drawable.ic_star
+                else R.drawable.ic_star_outline
+            )
+        }
+
+        binding.imbDetailBack.setOnClickListener { presenter.onEvent(DetailViewEvent.OnUpPressed) }
+        binding.imbFavouriteIcon.setOnClickListener { presenter.onEvent(DetailViewEvent.OnFavouriteSelected) }
+
     }
 
     override fun navigateToDeviceList() = findNavController().navigate(
             DeviceDetailFragmentDirections.actionDeviceDetailFragmentToDevicesListFragment()
         )
+
+    override fun showMessage(message: String)
+    = Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 
     companion object {
         @JvmStatic

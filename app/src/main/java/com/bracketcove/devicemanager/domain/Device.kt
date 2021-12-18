@@ -7,7 +7,7 @@ data class Device(
     val id: Int,
     val name: String,
     val type: DEVICE_TYPE,
-    val isFavourite: Boolean,
+    var isFavourite: Boolean,
     val imageUrl: String,
     val description: String,
     val status: STATUS,

@@ -3,6 +3,8 @@ package com.bracketcove.devicemanager
 import com.bracketcove.devicemanager.domain.DEVICE_TYPE
 import com.bracketcove.devicemanager.domain.STATUS
 
+internal const val GENERIC_ERROR = "An error has occured."
+
 //NOTE: hard coded strings just for demo purposes; would use string resources in production
 //for localization
 internal fun STATUS.toStringValue(): String = when(this) {

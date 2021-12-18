@@ -10,10 +10,14 @@ interface IDetailContract {
 
     interface View {
         fun navigateToDeviceList()
+        fun showMessage(message: String)
     }
 
     interface ViewModel {
         fun showLoading(boolean: Boolean)
         fun setDeviceData(device: Device)
+        fun setIconIsFavourite(isFavourite: Boolean)
+        fun getDeviceId(): Int
+        fun getDeviceIsFavourite(): Boolean
     }
 }

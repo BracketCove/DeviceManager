@@ -12,8 +12,8 @@
                 app:destination="@id/devicesListFragment"
                 app:popUpTo="@+id/devicesListFragment"
                 app:popUpToInclusive="true"
-                app:enterAnim="@anim/scale_up"
-                app:exitAnim="@anim/scale_down"
+                app:enterAnim="@anim/slide_in_right"
+
         />
 
         <argument android:name="device" app:argType="com.bracketcove.devicemanager.domain.Device"/>
@@ -26,7 +26,7 @@
     >
         <action android:id="@+id/action_deviceDetailFragment_to_devicesListFragment"
                 app:destination="@id/deviceDetailFragment"
-                app:enterAnim="@anim/scale_up"
-                app:exitAnim="@anim/scale_down"/>
+                app:enterAnim="@anim/slide_in_left"
+                />
     </fragment>
 </navigation>

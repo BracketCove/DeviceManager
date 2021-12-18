@@ -17,8 +17,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textDeviceListTitle"
             style="@style/TextStyle.Heading"
+            android:id="@+id/textDeviceListTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -31,10 +31,7 @@
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-
+            android:layout_marginStart="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/searchIcon"
             app:layout_constraintStart_toEndOf="@id/textDeviceListTitle"
@@ -43,12 +40,16 @@
             <EditText
                 android:id="@+id/textInputSearch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end|center_vertical"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
                 android:hint="@string/Buzzer"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:inputType="textNoSuggestions"
                 android:fontFamily="sans-serif-condensed"
                 android:imeOptions="actionSearch"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
@@ -57,10 +58,11 @@
             android:layout_height="36dp"
             android:layout_margin="16dp"
             android:alpha="0.64"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_search" />
+            android:src="@drawable/ic_search" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bracketcove.devicemanager.databinding.FragmentDevicesListBinding
-import com.bracketcove.devicemanager.detail.IDetailContract
+import com.bracketcove.devicemanager.di.buildDeviceListPresenter
 import com.bracketcove.devicemanager.domain.Device
 
 /**
@@ -39,17 +40,6 @@ class DevicesListFragment : Fragment(), IDeviceListContract.View {
             .visibility = if (it) View.VISIBLE else View.INVISIBLE
         }
 
-        val adapter = DeviceAdapter(
-            emptyList(),
-            presenter::onEvent
-        )
-
-        binding.devList.adapter = adapter
-
-        vm.subDeviceList = {
-            adapter.submitList(it)
-        }
-
         binding.textInputSearch.apply {
             //cover both hard and soft keyboards
             setOnEditorActionListener { _, actionId, _ ->
@@ -69,9 +59,33 @@ class DevicesListFragment : Fragment(), IDeviceListContract.View {
 
     }
 
+    override fun showMessage(message: String)
+            = Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+
     override fun onStart() {
         super.onStart()
-        //TODO() don't forget to instantiate the presenter
+        presenter = buildDeviceListPresenter(
+            requireContext(),
+            this,
+            vm
+        )
+
+        val adapter = DeviceAdapter(
+            presenter::onEvent
+        )
+
+        binding.devList.adapter = adapter
+
+        vm.subDeviceList = {
+            adapter.submitList(it)
+        }
+
+        presenter.onEvent(DeviceListEvent.OnStart)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.onEvent(DeviceListEvent.OnStop)
     }
 
     override fun navigateToDetailFragment(device: Device) = findNavController().navigate(

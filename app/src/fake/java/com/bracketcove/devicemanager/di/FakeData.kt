@@ -1,4 +1,4 @@
-package com.bracketcove.devicemanager
+package com.bracketcove.devicemanager.di
 
 import com.bracketcove.devicemanager.data.DataSourceResult
 import com.bracketcove.devicemanager.data.IDatasource
@@ -36,12 +36,15 @@ class FakeDataSource : IDatasource {
 
 }
 
+const val SOME_IMAGE_URL =
+    "https://upload.wikimedia.org/wikipedia/commons/6/64/MicrotacElite%282%29.jpg"
+
 internal val fakeDeviceOne = Device(
     1,
     "My Android Phone",
     DEVICE_TYPE.ANDROID_PHONE,
     true,
-    "https://en.wikipedia.org/wiki/Mobile_phone#/media/File:2007Computex_e21Forum-MartinCooper.jpg",
+    SOME_IMAGE_URL,
     "This is my Android phone. I absolutely love it except when it drops my damn calls. Also I am" +
             "thoroughly unimpressed with Android 12's obscene level of negative space in ui widgets.",
     STATUS.AVAILABLE,
@@ -53,7 +56,7 @@ internal val fakeDeviceTwo = Device(
     "My iPad",
     DEVICE_TYPE.IOS_TABLET,
     false,
-    "https://en.wikipedia.org/wiki/Mobile_phone#/media/File:2007Computex_e21Forum-MartinCooper.jpg",
+    SOME_IMAGE_URL,
     "Lorem ipsum and all the rest",
     STATUS.OFFLINE,
     "iPadOS 13 "
@@ -64,7 +67,7 @@ internal val fakeDeviceThree = Device(
     "Front Door Camera",
     DEVICE_TYPE.CAMERA,
     true,
-    "https://en.wikipedia.org/wiki/Mobile_phone#/media/File:2007Computex_e21Forum-MartinCooper.jpg",
+    SOME_IMAGE_URL,
     "Front door camera in case of delivery people and porch pirates.",
     STATUS.AVAILABLE,
     "Embedded"
@@ -75,7 +78,7 @@ internal val fakeDeviceFour = Device(
     "My iOS Phone",
     DEVICE_TYPE.IOS_PHONE,
     true,
-    "https://en.wikipedia.org/wiki/Mobile_phone#/media/File:2007Computex_e21Forum-MartinCooper.jpg",
+    SOME_IMAGE_URL,
     "My super expensive iPhone",
     STATUS.OFFLINE,
     "iOS Something"

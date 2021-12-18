@@ -6,7 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <ImageView
+        android:id="@+id/imageDevice"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDeviceName"
+        tools:src="@drawable/ic_launcher_foreground"
+        />
 
     <ImageButton
         android:id="@+id/imbDetailBack"
@@ -19,7 +29,7 @@
         android:src="@drawable/ic_back"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:alpha=".64"
+        android:alpha=".86"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -33,38 +43,31 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingStart="0dp"
         android:layout_margin="16dp"
-        android:alpha="0.34"
+        android:alpha="0.64"
         android:text="My Iphone"
         />
 
     <ImageButton
         android:layout_width="36dp"
         android:layout_height="36dp"
+        android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="fitCenter"
         android:layout_margin="16dp"
-        android:alpha="0.64"
-        android:id="@+id/favouriteIcon"
-        tools:src="@drawable/ic_star_outline"
+        android:alpha="0.86"
+        android:id="@+id/imbFavouriteIcon"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_star_outline"
         />
 
-    <ImageView
-        android:id="@+id/imageDevice"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_launcher_foreground"
-        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="0.44" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVertical"
@@ -78,7 +81,7 @@
         android:id="@+id/textSubDeviceType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Device Type"
+        android:text="@string/device_type"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"
@@ -89,7 +92,7 @@
         android:id="@+id/textSubDeviceStatus"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Status"
+        android:text="@string/status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal"
@@ -101,6 +104,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="iOS Mobile"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textSubDeviceType"
@@ -112,6 +116,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Available"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guidelineVertical"
         app:layout_constraintTop_toBottomOf="@+id/textSubDeviceStatus"
@@ -122,11 +127,11 @@
         android:id="@+id/textSubDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Description"
+        android:text="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDeviceStatus"
-        android:paddingTop="8dp"
+        android:paddingTop="32dp"
         />
 
     <TextView

@@ -1,4 +1,4 @@
-package com.bracketcove.devicemanager
+package com.bracketcove.devicemanager.data
 
 import com.bracketcove.devicemanager.domain.Device
 
